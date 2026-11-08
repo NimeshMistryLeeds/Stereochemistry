@@ -426,22 +426,21 @@ var Mol2D = function( container, dims, params ){
 
 	self.onWindowResize = function(){
 
-    if (!self.svg) return;
+    if( !self.svg ){
+        console.warn("No SVG Element to resize. Call .draw() first!");
+        return;
+    }
 
     const rect = self.container.node().getBoundingClientRect();
 
-    if (rect.width <= 0 || rect.height <= 0) {
+    if( rect.width <= 0 || rect.height <= 0 ){
         return;
     }
 
     self.svg.node().viewBox.baseVal.height =
         self.svg.node().viewBox.baseVal.width *
         rect.height / rect.width;
-} else{
-			console.warn( "No SVG Element to resize. Call .draw() first!" );
-		}
-
-	}
+}
 
 }
 
